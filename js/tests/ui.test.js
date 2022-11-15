@@ -1,5 +1,5 @@
 const test = require('tape')
-const UI = require('../ui').UI
+const { TestInteractor, UI } = require('../ui')
 
 test('main loop', (t) => {
   /* TODO
@@ -12,9 +12,9 @@ test('main loop', (t) => {
     - olleh
     - oto
     - That was a palindrome!
-   */
-
-  const ui = new UI()
+    */
+  
+  const ui = new UI(TestInteractor)
   ui.mainLoop()
 
   if(ui.interactor.messages[0] == "olleh") t.pass("reverse print olleh")
