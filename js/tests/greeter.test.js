@@ -6,7 +6,12 @@ test('should say "good night" at midnight', (t) => {
   const greeter = new Greeter()
   const result = greeter.greet()
 
-  t.equal(result, expected, 'midnight = good night' )
+  if (result == "Good night"){
+    t.pass('Said Good night')
+  }
+  else{
+    t.fail('Did not said Good Night')
+  }
 
   t.end()
 })
