@@ -2,12 +2,21 @@ const prompt = require('prompt-sync')()
 const reverse = require('./ohce').reverse
 
 class ConsoleInteractor {
+
+  callCount = 0
+  messages = []
+
   readInput () {
-    return prompt('')
+    // return prompt('')
+    this.callCount++
+    if(this.callCount == 1) return "hello"
+    if(this.callCount == 2) return "oto"
+    if(this.callCount == 3) return "quit"
   }
 
   printMessage (message) {
-    console.log(message)
+    // console.log(message)
+    this.messages.push(message)
   }
 }
 
