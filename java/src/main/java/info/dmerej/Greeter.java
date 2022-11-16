@@ -7,6 +7,10 @@ public class Greeter {
     this.clock = new SystemClock();
   }
 
+  public Greeter(SystemClock systemClock) {
+    this.clock = systemClock;
+  }
+
   public String greet() {
     int currentHour = clock.getCurrentHour();
     if (currentHour >= 6 && currentHour < 12) {
@@ -20,7 +24,7 @@ public class Greeter {
     if (currentHour >= 20 || currentHour < 6) {
       return "Good night";
     }
-    
+
     throw new AssertionError(String.format("%d hour was not handled", currentHour));
   }
 
