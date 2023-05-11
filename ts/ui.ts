@@ -1,7 +1,13 @@
 import * as readline from 'node:readline/promises'
 import { reverse } from './ohce'
 
-class ConsoleInteractor {
+export interface Interactor {
+  readInput(): Promise<string>
+  printMessage(message: string): void
+  close(): void
+}
+
+export class ConsoleInteractor implements Interactor {
   reader: readline.Interface
 
   constructor() {
@@ -15,6 +21,7 @@ class ConsoleInteractor {
     return res
   }
 
+
   close() {
     this.reader.close()
   }
@@ -25,10 +32,10 @@ class ConsoleInteractor {
 }
 
 export default class UI {
-  interactor: ConsoleInteractor
+  interactor: Interactor
 
-  constructor() {
-    this.interactor = new ConsoleInteractor()
+  constructor(interactor: Interactor) {
+    this.interactor = interactor
   }
 
   async mainLoop() {

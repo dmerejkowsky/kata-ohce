@@ -1,15 +1,19 @@
-export class SystemClock {
+export class SystemClock implements Clock {
   currentHour() {
     const date = new Date()
     return date.getHours()
   }
 }
 
-export default class Greeter {
-  clock: SystemClock
+export interface Clock {
+  currentHour(): number
+}
 
-  constructor() {
-    this.clock = new SystemClock()
+export default class Greeter {
+  clock: Clock
+
+  constructor(clock: Clock) {
+    this.clock = clock
   }
 
   greet(): string | undefined {
